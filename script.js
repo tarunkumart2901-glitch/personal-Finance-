@@ -9,6 +9,7 @@ const amountLabel = document.querySelector('#amountLabel');
 const incomePeriodInput = document.querySelector('#incomePeriod');
 const incomePeriodField = document.querySelector('#incomePeriodField');
 const categoryInput = document.querySelector('#category');
+const categoryInputField = document.querySelector('#categoryField');
 const dateInput = document.querySelector('#date');
 const searchInput = document.querySelector('#search');
 const categoryFilter = document.querySelector('#filterCategory');
@@ -37,6 +38,17 @@ function updateAmountLabel() {
   const isIncome = typeInput.value === 'income';
   amountLabel.textContent = `${isIncome ? 'Income' : 'Expense'} amount (₹)`;
   incomePeriodField.hidden = !isIncome;
+  updateCategoryForIncome();
+}
+
+function updateCategoryForIncome(){
+  const isIncome = typeInput.value === 'income';
+  if(isIncome){
+    categoryInput.value = 'Salary';
+  }else{
+     categoryInput.value = 'Other';
+  }
+  categoryInputField.style.display = isIncome ? "none": "flex";
 }
 
 typeInput.addEventListener('change', updateAmountLabel);
